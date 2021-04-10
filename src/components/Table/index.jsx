@@ -14,12 +14,13 @@ class Table extends React.Component {
     }
 
     //handle input change to .sort through the names
+    
 
 //componentDidMount lifestyle method will happen as the page loads
 componentDidMount(){
-    axios.get("https://randomuser.me/api/?results=25&nat=us")\
+    axios.get(`https://randomuser.me/api/?results=25&nat=us`)
     .then((res) => {
-        this.setState({ users: })
+        this.setState({ users: res.data.results })
     })
 }
 
@@ -27,7 +28,11 @@ componentDidMount(){
 render() {
     return(
         //return all our data and display to the page
+        <div className="App">
+
+        </div>
     )
 }
 }
 
+export default App;
