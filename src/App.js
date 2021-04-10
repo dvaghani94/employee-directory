@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
-import Home from './components/Home';
+import Container from './components/Container';
 import Header from './components/Header';
 import Wrapper from './components/Wrapper';
 
@@ -10,7 +10,7 @@ function App() {
     <Router>
    <div className="App">
      <Wrapper>
-       <Home />
+       <Container />
        <Header />
      </Wrapper>
      </div>
