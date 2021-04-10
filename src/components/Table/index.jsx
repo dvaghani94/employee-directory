@@ -1,38 +1,30 @@
-import React from 'react';
-import './style.css';
-import axios from 'axios';
-import  //import something using form
+import React from "react";
+import "./style.css";
 
-class Table extends React.Component {
+const Table = (props) => {
+    return (
+        <table className="table table-sortable table-striped text-center">
+            <thead>
+                <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col" data-sortable="true" data-field="name">
+                        <span onClick={() => props.sortBy("name", "last", "first")}>
+                            Name
+                        </span>
+                    </th>
+                    <th scope="col">
+                        <span onClick={() => props.sortBy("phone")}>Phone</span>
+                    </th>
+                    <th scope="col">
+                        <span onClick={() => props.sortBy("email")}>Email</span>
+                    </th>
+                    <th scope="col">
+                        <span onClick={() => props.sortBy("dob", "date")}>DOB</span>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    );
+};
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            users: [],
-
-        }
-    }
-
-    //handle input change to .sort through the names
-    
-
-//componentDidMount lifestyle method will happen as the page loads
-componentDidMount(){
-    axios.get(`https://randomuser.me/api/?results=25&nat=us`)
-    .then((res) => {
-        this.setState({ users: res.data.results })
-    })
-}
-
-// render and return axios call info in here 
-render() {
-    return(
-        //return all our data and display to the page
-        <div className="App">
-
-        </div>
-    )
-}
-}
-
-export default App;
+export default Table;
