@@ -23,6 +23,7 @@ class Container extends Component {
   handleInputChange = (e) => {
     const value = e.target.value;
     this.setState({ search: value });
+    this.employeeSearched(value.toLowerCase().trim());
   };
 
   handleFormSubmit = (e) => {
@@ -34,6 +35,7 @@ class Container extends Component {
       .then((res) =>
         this.setState({
           employee: res.data.results,
+          employeeSearch: res.data.results,
         })
       )
       .catch((err) => console.log(err));
@@ -53,7 +55,7 @@ class Container extends Component {
     const searchData = this.state.employeeSearch;
     if (this.state.employeeData[key]) {
       this.setState({
-        employeeData: searchData.reverse(),
+        employeeSearch: searchData.reverse(),
         employeeData: {
           ...this.initialEmployeeData,
           [key]: this.state.employeeData[key] === "asc" ? "desc" : "asc",
@@ -84,18 +86,18 @@ class Container extends Component {
     }
   };
 
-  employeeSearched = (search) => {
-    if (search) {
+  employeeSearched = (input) => {
+    if (input) {
       this.setState({
         employeeSearch: this.state.employee.filter((searched) => {
           return (
             searched.name.first
               .toLowerCase()
               .concat("", searched.name.last.toLowerCase())
-              .includes(search) ||
-            searched.phone.includes(search) ||
-            searched.email.includes(search) ||
-            this.formatDate(searched.dob.date).includes(search)
+              .includes(input) ||
+            searched.phone.includes(input) ||
+            searched.email.includes(input) ||
+            this.formatDate(searched.dob.date).includes(input)
           );
         }),
       });
@@ -113,7 +115,12 @@ class Container extends Component {
           handleFormSubmit={this.handleFormSubmit}
         />
         <div className="container mt-4">
-          <Table state={this.state} formatDate={this.formatDate} />
+          <Table
+            state={this.state}
+            sortBy={this.sortBy}
+            employeeSearched={this.employeeSearched}
+            formatDate={this.formatDate}
+          />
         </div>
       </>
     );
