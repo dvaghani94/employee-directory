@@ -2,9 +2,20 @@ thead th span {
     cursor: pointer;
 }
 
-thead {
+thead, tbody tr {
     display: table;
     table-layout: fixed;
     width: 100%;
+}
+
+tbody {
+    display: block;
+    max-height: 70vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.email {
+    overflow-x: auto;
 }
 
