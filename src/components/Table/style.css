@@ -1,21 +1,21 @@
 thead th span {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-thead, tbody tr {
-    display: table;
-    table-layout: fixed;
-    width: 100%;
+thead,
+tbody tr {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
 }
 
 tbody {
-    display: block;
-    max-height: 70vh;
-    overflow-x: hidden;
-    overflow-y: auto;
+  display: block;
+  max-height: 70vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .email {
-    overflow-x: auto;
+  overflow-x: auto;
 }
-

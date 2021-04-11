@@ -10,7 +10,7 @@ class Container extends Component {
     employeeSearch: [],
     employeeData: this.initialEmployeeData,
   };
-  
+
   get initialEmployeeData() {
     return {
       name: "",
@@ -21,13 +21,13 @@ class Container extends Component {
   }
 
   handleInputChange = (e) => {
-      const value = e.target.value;
-      this.setState({ search: value });
+    const value = e.target.value;
+    this.setState({ search: value });
   };
 
   handleFormSubmit = (e) => {
-      e.preventDefault();
-  }
+    e.preventDefault();
+  };
 
   componentDidMount() {
     API.getEmployees()
@@ -40,13 +40,13 @@ class Container extends Component {
   }
 
   formatDate = (date) => {
-      date = new Date(date);
-      const dob = [];
-      dob.push(("0" + (date.getMonth() + 1)).slice(-2));
-      dob.push(("0" + date.getDate()).slice(-2));
-      dob.push(date.getFullYear());
+    date = new Date(date);
+    const dob = [];
+    dob.push(("0" + (date.getMonth() + 1)).slice(-2));
+    dob.push(("0" + date.getDate()).slice(-2));
+    dob.push(date.getFullYear());
 
-      return dob.join("-");
+    return dob.join("-");
   };
 
   sortBy = (key, primary = 0, secondary = 0) => {
@@ -64,7 +64,7 @@ class Container extends Component {
         a = a[key];
         b = b[key];
 
-        if(primary) {
+        if (primary) {
           if (secondary && a[primary] === b[primary]) {
             return a[secondary].localeCompare(b[secondary]);
           }
@@ -90,9 +90,9 @@ class Container extends Component {
         employeeSearch: this.state.employee.filter((searched) => {
           return (
             searched.name.first
-            .toLowerCase()
-            .concat("", searched.name.last.toLowerCase())
-            .includes(search) ||
+              .toLowerCase()
+              .concat("", searched.name.last.toLowerCase())
+              .includes(search) ||
             searched.phone.includes(search) ||
             searched.email.includes(search) ||
             this.formatDate(searched.dob.date).includes(search)
@@ -105,21 +105,18 @@ class Container extends Component {
   };
 
   render() {
-      return (
-          <>
-          <Search
-            value={this.state.search}
-            handleInputChange={this.handleInputChange}
-            handleFormSubmit={this.handleFormSubmit}
-            />
-            <div className="container mt-4">
-                <Table
-                state={this.state}
-                formatDate={this.formatDate}
-                />
-            </div>
-            </>
-      );
+    return (
+      <>
+        <Search
+          value={this.state.search}
+          handleInputChange={this.handleInputChange}
+          handleFormSubmit={this.handleFormSubmit}
+        />
+        <div className="container mt-4">
+          <Table state={this.state} formatDate={this.formatDate} />
+        </div>
+      </>
+    );
   }
 }
 
