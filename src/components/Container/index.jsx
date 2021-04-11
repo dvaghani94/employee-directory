@@ -1,13 +1,24 @@
 import React, { Component } from "react";
 import Search from "../Search";
 import Table from "../Table";
-import API from "../../utils";
+import API from "../../utils/API";
 
 class Container extends Component {
   state = {
     search: "",
     employee: [],
+    employeeSearch: [],
+    employeeData: this.initialEmployeeData,
   };
+  
+  get initialEmployeeData() {
+    return {
+      name: "",
+      phone: "",
+      email: "",
+      dob: "",
+    };
+  }
 
   handleInputChange = (e) => {
       const value = e.target.value;
@@ -37,6 +48,24 @@ class Container extends Component {
 
       return dob.join("-");
   };
+
+  sortBy = (key, primary = 0, secondary = 0) => {
+    const searchData = this.state.employeeSearch;
+    if (this.state.employeeData[key]) {
+      this.setState({
+        employeeData: searchData.reverse(),
+        employeeData: {
+          ...this.initialEmployeeData,
+          [key]: this.state.employeeData[key] === "asc" ? "desc" : "asc",
+        },
+      });
+    } else {
+      searchData = this.state.employeeSearch.sort((a, b) => {
+        a = a[key];
+        b = b[key];
+      })
+    }
+  }
 
   render() {
       return (
