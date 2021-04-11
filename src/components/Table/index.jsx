@@ -24,7 +24,7 @@ const Table = (props) => {
                 </tr>
             </thead>
             <tbody>
-                {props.state.employeeSearched.map((searched) => {
+                {props.state.employeeSearch.map((searched) => {
                     const { first, last } = searched.name;
                     const fullName = `${first} ${last}`;
 
