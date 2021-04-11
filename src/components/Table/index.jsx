@@ -23,6 +23,30 @@ const Table = (props) => {
                     </th>
                 </tr>
             </thead>
+            <tbody>
+                {props.state.employeeSearched.map((searched) => {
+                    const { first, last } = searched.name;
+                    const fullName = `${first} ${last}`;
+
+                    const dob = props.formatDate(searched.dob.date);
+
+                    return (
+                        <tr key={searched.login.uuid}>
+                            <td>
+                                <img src={searched.picture.thumbnail} alt={fullName} />
+                            </td>
+                            <td className="align-middle">{fullName}</td>
+                            <td className="align-middle">
+                                <a href={`tel:+1${searched.phone}`}>{searched.phone}</a>
+                            </td>
+                            <td className="align-middle email">
+                                <a href={`mailto:${searched.email}`}>{searched.email}</a>
+                            </td>
+                            <td className="align-middle">{dob}</td>
+                        </tr>
+                    );
+                })}
+            </tbody>
         </table>
     );
 };
