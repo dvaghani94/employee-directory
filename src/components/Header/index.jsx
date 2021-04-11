@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css'
 
-function Header(props) {
+const Header = () => {
     return (
         <div>
             <header>
@@ -9,7 +9,7 @@ function Header(props) {
                 <p>Input name in search field to search a specific employee</p>
             </header>
         </div>
-    )
-}
+    );
+};
 
 export default Header;
