@@ -63,9 +63,46 @@ class Container extends Component {
       searchData = this.state.employeeSearch.sort((a, b) => {
         a = a[key];
         b = b[key];
-      })
+
+        if(primary) {
+          if (secondary && a[primary] === b[primary]) {
+            return a[secondary].localeCompare(b[secondary]);
+          }
+          return a[primary].localeCompare(b[primary]);
+        } else {
+          return a.localeCompare(b);
+        }
+      });
+
+      this.setState({
+        employeeSearch: searchData,
+        employeeData: {
+          ...this.initialEmployeeData,
+          [key]: "asc",
+        },
+      });
     }
-  }
+  };
+
+  employeeSearched = (search) => {
+    if (search) {
+      this.setState({
+        employeeSearch: this.state.employee.filter((searched) => {
+          return (
+            searched.name.first
+            .toLowerCase()
+            .concat("", searched.name.last.toLowerCase())
+            .includes(search) ||
+            searched.phone.includes(search) ||
+            searched.email.includes(search) ||
+            this.formatDate(searched.dob.date).includes(search)
+          );
+        }),
+      });
+    } else {
+      this.setState({ employeeSearch: this.state.employee });
+    }
+  };
 
   render() {
       return (
