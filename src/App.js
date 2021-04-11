@@ -9,13 +9,11 @@ function App() {
   return (
     <Router>
    <div className="App">
-     <Wrapper>
        <Container />
        <Header />
-     </Wrapper>
      </div>
    </Router>
   );
-}
+};
 
 export default App;
